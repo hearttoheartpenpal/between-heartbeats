@@ -1,1 +1,333 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #fffdf5 url('assets/backdrop.png') repeat;
+    color: #171717;
+}
+
+.nav {
+    width: 72%;
+    height: 48px;
+    margin: 40px auto 25px 14%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: url('assets/sidebar.png') center / 100% 100% no-repeat;
+    position: relative;
+}
+
+.nav a {
+    color: transparent;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Patrick Hand', cursive;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav a:hover {
+    background: rgba(220, 150, 165, 0.25);
+}
+
+#theme {
+    position: absolute;
+    right: -45px;
+    border: none;
+    background: #e8aeb8;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.home {
+    width: 80%;
+    max-width: 1250px;
+    margin: 35px auto;
+    padding: 55px;
+    background: #ffd0da url('assets/pink backdrop.png') center / 100% 100% no-repeat;
+    border-radius: 110px 110px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    gap: 20px;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    width: 140px;
+    top: -100px;
+    left: -105px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 0 0 15px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Paint window */
+
+.paint {
+    background: #d7ccc5;
+    border: 2px solid #a3938b;
+    border-radius: 4px;
+    padding: 4px;
+    min-height: 290px;
+    box-shadow: 2px 2px 0 #c5a39e;
+    display: flex;
+    flex-direction: column;
+}
+
+.paint-title {
+    background: #dca4ad;
+    padding: 5px;
+    font-family: 'Patrick Hand', cursive;
+    border: 1px solid #ac8186;
+    display: flex;
+    justify-content: space-between;
+}
+
+.paint-menu {
+    font-size: 10px;
+    padding: 5px 2px;
+}
+
+.paint-body {
+    display: flex;
+    flex: 1;
+    gap: 4px;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: repeat(2, 16px);
+    align-content: start;
+    gap: 3px;
+}
+
+.tools span {
+    border: 1px solid #b5aaa2;
+    background: #eee6df;
+    text-align: center;
+    font-size: 12px;
+}
+
+#contact {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#contact textarea {
+    width: 100%;
+    flex: 1;
+    min-height: 180px;
+    resize: none;
+    border: 2px inset #e6ded9;
+    background: #fffefd;
+    padding: 12px;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 16px;
+}
+
+#contact button {
+    align-self: flex-end;
+    background: #edc0c5;
+    border: 1px solid #ae9191;
+    padding: 5px 10px;
+    font-family: 'Patrick Hand', cursive;
+}
+
+#colors {
+    height: 22px;
+    margin-top: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #ac4545 0px 10px,
+        #edb777 10px 20px,
+        #e6d992 20px 30px,
+        #86ae83 30px 40px,
+        #6a9ab7 40px 50px,
+        #9676b4 50px 60px
+    );
+}
+
+/* Heart anatomy */
+
+.anatomy {
+    background: #fffefd;
+    border-radius: 30px;
+    padding: 25px;
+    min-height: 290px;
+}
+
+.heart-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.heart-info {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+}
+
+.heart-info h3 {
+    font-size: 16px;
+}
+
+#heart {
+    width: 50%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* Meet the author */
+
+.author {
+    background: url('assets/yellow sticky note.png') center / 100% 100% no-repeat;
+    padding: 55px 22px 30px;
+    font-size: 12px;
+    min-height: 290px;
+}
+
+.author h2 {
+    width: 48%;
+    float: left;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.author img {
+    width: 46%;
+    float: right;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.author p {
+    clear: both;
+    line-height: 1.6;
+}
+
+.author a {
+    color: inherit;
+}
+
+.author .tape {
+    display: none;
+}
+
+/* Recent interests */
+
+.interests {
+    background: url('assets/articles.png') center / 100% 100% no-repeat;
+    border-radius: 30px;
+    padding: 20px;
+    min-height: 300px;
+}
+
+.notes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.notes .note {
+    min-height: 95px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+/* About the website */
+
+.about-site {
+    grid-column: 2 / 4;
+    background: #ffffd0 url('assets/yellow square.png') center / 100% 100% no-repeat;
+    border-radius: 35px;
+    padding: 35px;
+    text-align: center;
+}
+
+.about-site p {
+    margin: 40px auto;
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+/* Dark mode */
+
+body.dark {
+    background-color: #241f29;
+    background-blend-mode: multiply;
+    color: #f4e8ec;
+}
+
+.dark .home {
+    background-color: #543445;
+    background-blend-mode: multiply;
+}
+
+.dark .anatomy {
+    background: #342b38;
+}
+
+.dark .author,
+.dark .about-site,
+.dark .interests {
+    background-color: #57513c;
+    background-blend-mode: multiply;
+}
+
+.dark #theme {
+    background: #e7d9a2;
+}
+
+@media (max-width: 800px) {
+    .home {
+        width: 92%;
+        grid-template-columns: 1fr;
+        padding: 25px;
+        border-radius: 40px;
+    }
+
+    .about-site {
+        grid-column: 1;
+    }
+
+    .logo {
+        position: static;
+        margin: auto;
+    }
+
+    .nav {
+        width: 85%;
+        margin-left: 5%;
+        height: 35px;
+    }
+}
+

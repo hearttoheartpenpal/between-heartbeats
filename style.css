@@ -505,3 +505,37 @@ h2 {
     color: #999;
     pointer-events: none;
 }
+
+.author {
+    text-align: left;
+    padding: 65px 28px 35px;
+}
+
+.author-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.author-top h2 {
+    flex: 1;
+    text-align: left;
+    font-size: 25px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.author-top img {
+    width: 48%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin: 0;
+}
+
+.author p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+

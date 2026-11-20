@@ -1,145 +1,246 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Between Heartbeats</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<body>
 
     <!-- Website title -->
+
     <header class="site-title">
+
         <h1>Between Heartbeats</h1>
 
         <svg class="heartbeat" viewBox="0 0 300 30">
-            <path d="M0 15 H110 L120 8 L128 22
-                     L140 2 L150 27 L160 15 H300"
+            <path d="M0 15 H110 L120 8 L128 22 L140 2
+                     L150 27 L160 15 H300"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"/>
+                  stroke-width="2"
+                  stroke-linejoin="round"/>
         </svg>
 
         <p>a glimpse into my world, one heartbeat at a time.</p>
+
     </header>
 
+
+    <!-- Navigation bar -->
+
     <nav class="nav">
-        <a href="index.html" class="home-icon" aria-label="Homepage">⌂</a>
-        <a href="index.html">Home</a>
-        <a href="shadowing.html">Shadowing</a>
-        <a href="volunteering.html">Volunteering</a>
-        <a href="blogs.html">Blogs</a>
-        <a href="heart-files.html">The Heart Files</a>
-        <a href="scrapbook.html">Scrapbook</a>
-        <a href="about.html">About</a>
+
+        <a href="index.html" aria-label="Home">⌂</a>
+        <a href="index.html" class="active">HOME</a>
+        <a href="shadowing.html">SHADOWING</a>
+        <a href="volunteering.html">VOLUNTEERING</a>
+        <a href="blogs.html">BLOGS</a>
+        <a href="heart-files.html">THE HEART FILES</a>
+        <a href="scrapbook.html">SCRAPBOOK</a>
+        <a href="about.html">ABOUT</a>
+
     </nav>
 
-    <main class="home">
 
-        <section class="paint">
-            <div class="paint-title">
-                Reach out here! ♡
-                <span>− □ ×</span>
-            </div>
+    <!-- Homepage -->
 
-            <div class="paint-menu">
-                <button id="clear">Clear</button>
-                <span>Image</span>
-                <span>Colors</span>
-            </div>
+    <main class="homepage">
 
-            <div class="paint-body">
-                <div class="tools">
-                    <button data-tool="pencil" title="Pencil">✎</button>
-                    <button data-tool="eraser" title="Eraser">▱</button>
-                    <button data-tool="text" title="Type">A</button>
-                    <button data-tool="heart" title="Heart">♡</button>
-                    <button data-tool="star" title="Star">☆</button>
-                    <button data-tool="circle" title="Circle">○</button>
-                    <button data-tool="square" title="Square">□</button>
-                    <button id="undo" title="Undo">↶</button>
+        <div class="home-grid">
+
+
+            <!-- Reach out here -->
+
+            <section class="paint-window">
+
+                <div class="paint-title">
+                    <span>Reach out here! ♡</span>
+                    <span>− □ ×</span>
                 </div>
 
-                <div class="paper">
-                    <canvas id="drawing" width="600" height="600"></canvas>
-                    <textarea id="message" aria-label="Your message" placeholder="Write a little message... ♡"></textarea>
-                </div>
-            </div>
-
-            <div class="paint-bottom">
-                <div id="colors"></div>
-                <button id="send" disabled>Send ♡</button>
-            </div>
-
-            <p id="status" role="status"></p>
-        </section>
-
-        <section class="anatomy">
-            <h2>Interactive anatomy of the heart:</h2>
-
-            <div class="heart-content">
-                <div class="heart-info">
-                    <h3 id="part">The human heart</h3>
-                    <p id="description">
-                        Select a region of the heart to learn more about it.
-                    </p>
+                <div class="paint-menu">
+                    <button type="button" id="clear">Clear</button>
+                    <span>Image</span>
+                    <span>Colors</span>
                 </div>
 
-                <div class="heart-placeholder">
-                    Heart illustration coming soon ♡
+                <div class="paint-body">
+
+                    <div class="paint-tools">
+
+                        <button type="button" data-tool="pencil"
+                                title="Pencil">✎</button>
+
+                        <button type="button" data-tool="eraser"
+                                title="Eraser">▱</button>
+
+                        <button type="button" data-tool="text"
+                                class="selected"
+                                title="Text">A</button>
+
+                        <button type="button" data-tool="heart"
+                                title="Heart">♡</button>
+
+                        <button type="button" data-tool="star"
+                                title="Star">☆</button>
+
+                        <button type="button" data-tool="circle"
+                                title="Circle">○</button>
+
+                        <button type="button" data-tool="square"
+                                title="Square">□</button>
+
+                        <button type="button" id="undo"
+                                title="Undo">↶</button>
+
+                    </div>
+
+                    <div class="paint-paper">
+
+                        <canvas id="drawing"
+                                width="600"
+                                height="500">
+                        </canvas>
+
+                        <div id="message"
+                             contenteditable="true"
+                             role="textbox"
+                             aria-label="Write a little message"
+                             aria-multiline="true"
+                             spellcheck="false"
+                             data-placeholder="Write a little message... ♡">
+                        </div>
+
+                    </div>
+
                 </div>
-            </div>
-        </section>
 
-      
-<section class="author">
-    <h2>Meet the author:</h2>
+                <div class="paint-bottom">
 
-    <img src="assets/me.jpg" alt="Author">
+                    <div id="colors" class="paint-colors"></div>
 
-    <p>Hi! My name is...</p>
-    <p>Coming soon...</p>
+                    <button type="button" id="send" disabled>
+                        Send ♡
+                    </button>
 
-    <a href="about.html">Read more ♡</a>
-</section>
+                </div>
 
-        <section class="interests">
-            <h2>Recent interests:</h2>
+                <div id="status" class="paint-status" aria-live="polite">
+                    Draw or write a little note!
+                </div>
 
-            <div class="notes" id="articles">
-                <article class="note">
-                    <p>Coming soon...</p>
-                </article>
+            </section>
 
-                <article class="note">
-                    <p>Coming soon...</p>
-                </article>
 
-                <article class="note">
-                    <p>Coming soon...</p>
-                </article>
+            <!-- Interactive heart -->
 
-                <article class="note">
-                    <p>Coming soon...</p>
-                </article>
-            </div>
-        </section>
+            <section class="heart-card">
 
-        <section class="about-site">
-            <h2>About this website:</h2>
-            <p>Coming soon...</p>
-        </section>
+                <h2>Interactive anatomy of the heart:</h2>
+
+                <div class="heart-content">
+
+                    <div class="heart-info">
+
+                        <h3 id="heart-name">The human heart</h3>
+
+                        <p id="heart-description">
+                            Select a region of the heart
+                            to learn more about it.
+                        </p>
+
+                    </div>
+
+                    <div class="heart-illustration">
+
+                        <p>
+                            Heart illustration coming soon ♡
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Meet the author -->
+
+            <section class="author">
+
+                <div class="author-top">
+
+                    <h2>Meet the author:</h2>
+
+                    <img src="assets/me.jpg"
+                         alt="Author photograph">
+
+                </div>
+
+                <p>Hi! My name is...</p>
+
+                <p>Coming soon...</p>
+
+                <a href="about.html">Read more ♡</a>
+
+            </section>
+
+
+            <!-- Recent interests -->
+
+            <section class="recent">
+
+                <h2>Recent interests:</h2>
+
+                <div class="article-grid">
+
+                    <div class="article-note">
+                        Coming soon...
+                    </div>
+
+                    <div class="article-note">
+                        Coming soon...
+                    </div>
+
+                    <div class="article-note">
+                        Coming soon...
+                    </div>
+
+                    <div class="article-note">
+                        Coming soon...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- About this website -->
+
+            <section class="about-website">
+
+                <h2>About this website:</h2>
+
+                <p>Coming soon...</p>
+
+            </section>
+
+        </div>
 
     </main>
 
-    <script src="script.js"></script>
-</body>
-    </svg>
 
-    <p>a glimpse into my world, one heartbeat at a time.</p>
-</header>
+    <script src="script.js"></script>
+
+</body>
 
 </html>

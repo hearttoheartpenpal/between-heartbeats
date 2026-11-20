@@ -331,3 +331,133 @@ body.dark {
     }
 }
 
+/* Homepage adjustments */
+
+.nav {
+    width: 100%;
+    height: clamp(36px, 3.35vw, 65px);
+    margin: 25px 0 0;
+}
+
+#theme {
+    top: -24px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+}
+
+.logo {
+    display: none;
+}
+
+.home {
+    width: 88%;
+    max-width: 1700px;
+    margin: 45px auto 0;
+    padding: 55px 4% 65px;
+    background: #ffd0d8;
+    border: 32px solid #fffefd;
+    border-bottom: 0;
+    border-radius: 160px 160px 0 0;
+    grid-template-columns: 1fr 1.55fr 1fr;
+    gap: 20px;
+}
+
+.paint,
+.anatomy,
+.author {
+    min-height: 320px;
+}
+
+h2 {
+    font-size: clamp(17px, 1.4vw, 24px);
+}
+
+.author {
+    background: url('assets/yellow sticknote.png')
+        center / 100% 100% no-repeat;
+    padding: 65px 25px 35px;
+    font-size: 14px;
+}
+
+.author img {
+    width: 48%;
+    object-fit: cover;
+    object-position: 65% center;
+}
+
+.interests {
+    position: relative;
+    aspect-ratio: 1;
+    min-height: 0;
+    padding: 0;
+}
+
+.interests h2 {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    margin: 0;
+}
+
+.notes {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.notes .note {
+    position: absolute;
+    width: 32%;
+    height: 29%;
+    min-height: 0;
+    padding: 5px;
+    font-size: clamp(10px, 1vw, 15px);
+}
+
+.notes .note:nth-child(1) {
+    top: 22%;
+    left: 8%;
+}
+
+.notes .note:nth-child(2) {
+    top: 22%;
+    left: 57%;
+}
+
+.notes .note:nth-child(3) {
+    top: 60%;
+    left: 8%;
+}
+
+.notes .note:nth-child(4) {
+    top: 61%;
+    left: 57%;
+}
+
+.about-site {
+    padding: 30px;
+    background: #fcffd0;
+    font-size: 18px;
+}
+
+.dark .home {
+    background: #543445;
+    border-color: #342b38;
+}
+
+@media (max-width: 800px) {
+    .home {
+        width: 94%;
+        grid-template-columns: 1fr;
+        border-width: 12px;
+        border-radius: 60px 60px 0 0;
+        padding: 25px;
+    }
+
+    .about-site {
+        grid-column: 1;
+    }
+}
+

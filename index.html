@@ -7,9 +7,11 @@
     <title>Between Heartbeats</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <nav class="nav">
+        <a href="index.html" class="home-icon" aria-label="Homepage">⌂</a>
         <a href="index.html">Home</a>
         <a href="shadowing.html">Shadowing</a>
         <a href="volunteering.html">Volunteering</a>
@@ -17,83 +19,100 @@
         <a href="heart-files.html">The Heart Files</a>
         <a href="scrapbook.html">Scrapbook</a>
         <a href="about.html">About</a>
-        <button id="theme" aria-label="Toggle dark mode">☾</button>
     </nav>
 
     <main class="home">
 
-        <div class="logo">
-            <img src="assets/logo.png" alt="Between Heartbeats">
-        </div>
-
-        <div class="paint">
+        <section class="paint">
             <div class="paint-title">
                 Reach out here! ♡
                 <span>− □ ×</span>
             </div>
+
             <div class="paint-menu">
-                File　Edit　View　Image　Colors　Help
+                <button id="clear">Clear</button>
+                <span>Image</span>
+                <span>Colors</span>
             </div>
+
             <div class="paint-body">
                 <div class="tools">
-                    <span>✎</span>
-                    <span>▧</span>
-                    <span>A</span>
-                    <span>♡</span>
-                    <span>☆</span>
-                    <span>○</span>
+                    <button data-tool="pencil" title="Pencil">✎</button>
+                    <button data-tool="eraser" title="Eraser">▱</button>
+                    <button data-tool="text" title="Type">A</button>
+                    <button data-tool="heart" title="Heart">♡</button>
+                    <button data-tool="star" title="Star">☆</button>
+                    <button data-tool="circle" title="Circle">○</button>
+                    <button data-tool="square" title="Square">□</button>
+                    <button id="undo" title="Undo">↶</button>
                 </div>
-                <form id="contact">
-                    <textarea name="message" aria-label="Your message" placeholder="Write something..." required></textarea>
-                    <button type="submit" disabled>Send ♡</button>
-                </form>
+
+                <div class="paper">
+                    <canvas id="drawing" width="600" height="600"></canvas>
+                    <textarea id="message" aria-label="Your message" placeholder="Write a little message... ♡"></textarea>
+                </div>
             </div>
-            <div id="colors"></div>
-        </div>
+
+            <div class="paint-bottom">
+                <div id="colors"></div>
+                <button id="send" disabled>Send ♡</button>
+            </div>
+
+            <p id="status" role="status"></p>
+        </section>
 
         <section class="anatomy">
-            <h2>Interactive Anatomy of the Heart</h2>
+            <h2>Interactive anatomy of the heart:</h2>
+
             <div class="heart-content">
                 <div class="heart-info">
-                    <h3 id="part">The Human Heart</h3>
-                    <p id="description">Click on a part of the heart to learn more!</p>
+                    <h3 id="part">The human heart</h3>
+                    <p id="description">
+                        Select a region of the heart to learn more about it.
+                    </p>
                 </div>
-                <img src="assets/heart.png" alt="Human heart" id="heart">
+
+                <div class="heart-placeholder">
+                    Heart illustration coming soon ♡
+                </div>
             </div>
         </section>
 
-        <section class="author note">
-            <div class="tape"></div>
-            <h2>Meet the Author!</h2>
-            <img src="assets/me.png" alt="Author">
+        <section class="author">
+            <div class="author-top">
+                <h2>Meet the author:</h2>
+                <img src="assets/me.jpg" alt="Author">
+            </div>
+
+            <p>Hi! My name is...</p>
             <p>Coming soon...</p>
             <a href="about.html">Read more ♡</a>
         </section>
 
         <section class="interests">
-            <h2>Recent Interests</h2>
+            <h2>Recent interests:</h2>
+
             <div class="notes" id="articles">
-                <div class="note">
-                    <div class="tape"></div>
+                <article class="note">
                     <p>Coming soon...</p>
-                </div>
-                <div class="note">
-                    <div class="tape"></div>
+                </article>
+
+                <article class="note">
                     <p>Coming soon...</p>
-                </div>
-                <div class="note">
-                    <div class="tape"></div>
+                </article>
+
+                <article class="note">
                     <p>Coming soon...</p>
-                </div>
-                <div class="note">
-                    <div class="tape"></div>
+                </article>
+
+                <article class="note">
                     <p>Coming soon...</p>
-                </div>
+                </article>
             </div>
         </section>
 
         <section class="about-site">
-            <h2>About This Website</h2>
+            <h2>About this website:</h2>
             <p>Coming soon...</p>
         </section>
 

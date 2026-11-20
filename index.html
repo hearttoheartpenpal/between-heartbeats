@@ -10,7 +10,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 
 <body>
@@ -125,15 +125,11 @@
 
                     </div>
 
-
-                    <!-- Drawing and writing area -->
-
                     <div class="paint-paper">
 
                         <canvas id="drawing"
                                 width="600"
-                                height="500">
-                        </canvas>
+                                height="500"></canvas>
 
                         <div id="message"
                              contenteditable="true"
@@ -155,6 +151,7 @@
                     <input type="text"
                            id="sender-name"
                            name="name"
+                           maxlength="100"
                            placeholder="From: Your name or nickname"
                            aria-label="Your name or nickname">
 
@@ -167,7 +164,7 @@
                 </div>
 
 
-                <!-- Colors and Send button -->
+                <!-- Colors and Send -->
 
                 <div class="paint-bottom">
 
@@ -181,20 +178,16 @@
                 </div>
 
 
-                <!-- Status and disclaimer -->
+                <!-- Status -->
 
                 <div id="status"
                      class="paint-status"
                      aria-live="polite">
-
                     Leave a doodle! ♡
-
                 </div>
 
                 <div class="paint-disclaimer">
-
                     (I haven't figured out how to send drawings yet!)
-
                 </div>
 
             </section>
@@ -300,7 +293,7 @@
     </main>
 
 
-    <script src="script.js"></script>
+    <script src="script.js?v=6"></script>
 
 </body>
 

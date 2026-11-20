@@ -618,7 +618,6 @@ h2 {
     }
 }
 
-/* Restore original sticky note height */
 
 .home-grid > .author {
     align-self: start;
@@ -630,4 +629,22 @@ h2 {
     align-self: start;
     min-height: 360px;
     height: auto;
+}
+
+
+@media (min-width: 1051px) {
+
+    .paint-body {
+        min-height: 135px;
+        flex: 1;
+    }
+
+    .home-grid > .paint-window,
+    .home-grid > .heart-card,
+    .home-grid > .author {
+        height: 360px;
+        min-height: 360px;
+        align-self: start;
+    }
+
 }

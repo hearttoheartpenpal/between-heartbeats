@@ -222,12 +222,15 @@ canvas.addEventListener("pointerdown", event => {
 
     const p = position(event);
 
-    const shapes = {
-        heart: "♡",
-        star: "☆",
-        circle: "○",
-        square: "□"
-    };
+    
+const shapes = {
+    heart: "♡",
+    star: "☆",
+    circle: "○",
+    rectangle: "▭",
+    arrow: "➝"
+};
+
 
     if (shapes[tool]) {
 

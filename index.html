@@ -68,48 +68,65 @@
                 </div>
 
                 <div class="paint-menu">
-                    <button type="button" id="clear">Clear</button>
+
+                    <button type="button" id="clear">
+                        Clear
+                    </button>
+
                     <span>Image</span>
                     <span>Colors</span>
+
                 </div>
 
                 <div class="paint-body">
 
                     <div class="paint-tools">
 
-                        <button type="button" data-tool="pencil"
+                        <button type="button"
+                                data-tool="pencil"
                                 title="Pencil">✎</button>
 
-                        <button type="button" data-tool="eraser"
+                        <button type="button"
+                                data-tool="eraser"
                                 title="Eraser">▱</button>
 
-                        <button type="button" data-tool="text"
+                        <button type="button"
+                                data-tool="text"
                                 class="selected"
                                 title="Text">A</button>
 
-                        <button type="button" data-tool="heart"
+                        <button type="button"
+                                data-tool="heart"
                                 title="Heart">♡</button>
 
-                        <button type="button" data-tool="star"
+                        <button type="button"
+                                data-tool="star"
                                 title="Star">☆</button>
 
-                        <button type="button" data-tool="circle"
+                        <button type="button"
+                                data-tool="circle"
                                 title="Circle">○</button>
 
-                        <button type="button" data-tool="square"
+                        <button type="button"
+                                data-tool="square"
                                 title="Square">□</button>
-                        
-<button type="button" data-tool="rectangle"
-        title="Rectangle">▭</button>
 
-<button type="button" data-tool="arrow"
-        title="Arrow">➝</button>
+                        <button type="button"
+                                data-tool="rectangle"
+                                title="Rectangle">▭</button>
 
-<button type="button" id="undo"
-        title="Undo">↶</button>
+                        <button type="button"
+                                data-tool="arrow"
+                                title="Arrow">➝</button>
 
+                        <button type="button"
+                                id="undo"
+                                title="Undo">↶</button>
 
                     </div>
+
+
+                    <!-- Drawing and writing area -->
 
                     <div class="paint-paper">
 
@@ -118,38 +135,44 @@
                                 height="500">
                         </canvas>
 
-                       
-<div id="message"
-     contenteditable="true"
-     role="textbox"
-     aria-label="Write a little message"
-     aria-multiline="true"
-     spellcheck="false"
-     data-placeholder="Write a little message... ♡"></div>
+                        <div id="message"
+                             contenteditable="true"
+                             role="textbox"
+                             aria-label="Write a little message"
+                             aria-multiline="true"
+                             spellcheck="false"
+                             data-placeholder="Write a little message... ♡"></div>
 
                     </div>
 
                 </div>
 
-<div class="sender-info">
 
-    <input type="text"
-           id="sender-name"
-           name="name"
-           placeholder="From: Your name or nickname"
-           aria-label="Your name or nickname">
+                <!-- Sender information -->
 
-    <input type="email"
-           id="sender-email"
-           name="email"
-           placeholder="Your email (optional)"
-           aria-label="Your email">
+                <div class="sender-info">
 
-</div>
+                    <input type="text"
+                           id="sender-name"
+                           name="name"
+                           placeholder="From: Your name or nickname"
+                           aria-label="Your name or nickname">
+
+                    <input type="email"
+                           id="sender-email"
+                           name="email"
+                           placeholder="Your email (optional)"
+                           aria-label="Your email">
+
+                </div>
+
+
+                <!-- Colors and Send button -->
 
                 <div class="paint-bottom">
 
-                    <div id="colors" class="paint-colors"></div>
+                    <div id="colors"
+                         class="paint-colors"></div>
 
                     <button type="button" id="send">
                         Send ♡
@@ -157,15 +180,24 @@
 
                 </div>
 
-               
-<div id="status" class="paint-status" aria-live="polite">
-    Leave a doodle! ♡
-</div>
 
-<div class="paint-disclaimer">
-    (I haven't figured out how to send drawings yet!)
-</div>
+                <!-- Status and disclaimer -->
 
+                <div id="status"
+                     class="paint-status"
+                     aria-live="polite">
+
+                    Leave a doodle! ♡
+
+                </div>
+
+                <div class="paint-disclaimer">
+
+                    (I haven't figured out how to send drawings yet!)
+
+                </div>
+
+            </section>
 
 
             <!-- Interactive heart -->
@@ -178,7 +210,9 @@
 
                     <div class="heart-info">
 
-                        <h3 id="heart-name">The human heart</h3>
+                        <h3 id="heart-name">
+                            The human heart
+                        </h3>
 
                         <p id="heart-description">
                             Select a region of the heart

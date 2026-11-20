@@ -617,3 +617,17 @@ h2 {
         min-height: 340px;
     }
 }
+
+/* Restore original sticky note height */
+
+.home-grid > .author {
+    align-self: start;
+    min-height: 360px;
+    height: auto;
+}
+
+.home-grid > .heart-card {
+    align-self: start;
+    min-height: 360px;
+    height: auto;
+}

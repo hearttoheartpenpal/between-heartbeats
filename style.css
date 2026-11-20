@@ -764,6 +764,9 @@ h2 {
 }
 .author-top img {
     object-fit: cover;
-    object-position: 65% 35%;
+    object-position: 75% 45%;
     transform: translateY(18px);
+}
+.author-top img {
+    width: 55%;
 }

@@ -6,8 +6,13 @@ const message = document.getElementById("message");
 const send = document.getElementById("send");
 const status = document.getElementById("status");
 
+const senderName = document.getElementById("sender-name");
+const senderEmail = document.getElementById("sender-email");
+
 const formEndpoint =
     "https://formspree.io/f/mwloqdnb";
+
+const defaultStatus = "Leave a doodle! ♡";
 
 let tool = "text";
 let color = "#333333";
@@ -27,8 +32,10 @@ document.addEventListener("selectionchange", () => {
         message.contains(selection.anchorNode) &&
         message.contains(selection.focusNode)
     ) {
+
         savedRange =
             selection.getRangeAt(0).cloneRange();
+
     }
 
 });
@@ -171,9 +178,7 @@ colors.forEach((c, index) => {
 
         document.querySelectorAll("#colors button")
             .forEach(b => {
-
                 b.classList.remove("selected");
-
             });
 
         button.classList.add("selected");
@@ -221,7 +226,7 @@ message.addEventListener("paste", event => {
 });
 
 
-/* Restore placeholder when empty */
+/* Restore placeholder */
 
 message.addEventListener("input", () => {
 
@@ -252,7 +257,7 @@ function saveDrawing() {
 }
 
 
-/* Get drawing position */
+/* Drawing position */
 
 function position(event) {
 
@@ -285,7 +290,7 @@ const shapes = {
 };
 
 
-/* Pencil, eraser and shape stamps */
+/* Pencil, eraser and shapes */
 
 canvas.addEventListener("pointerdown", event => {
 
@@ -399,12 +404,12 @@ document.getElementById("clear").onclick = () => {
     );
 
     message.innerHTML = "";
+
     savedRange = null;
 
     selectTool("text");
 
-    status.textContent =
-        "Leave a little note or doodle! ♡";
+    status.textContent = defaultStatus;
 
 };
 
@@ -417,8 +422,7 @@ message.innerHTML = "";
 
 send.disabled = false;
 
-status.textContent =
-    "Leave a little note or doodle! ♡";
+status.textContent = defaultStatus;
 
 
 /* Send message through Formspree */
@@ -427,7 +431,17 @@ send.onclick = async () => {
 
     if (send.disabled) return;
 
+
+    /* Read the message and sender details */
+
     const note = message.innerText.trim();
+
+    const name = senderName.value.trim();
+
+    const email = senderEmail.value.trim();
+
+
+    /* Validate message */
 
     if (!note) {
 
@@ -437,6 +451,23 @@ send.onclick = async () => {
         return;
 
     }
+
+
+    /* Validate optional email */
+
+    if (email && !senderEmail.checkValidity()) {
+
+        status.textContent =
+            "Double-check your email! ♡";
+
+        senderEmail.reportValidity();
+
+        return;
+
+    }
+
+
+    /* Detect unsent drawings */
 
     const pixels = ctx.getImageData(
         0, 0, canvas.width, canvas.height
@@ -458,14 +489,17 @@ send.onclick = async () => {
     if (hasDrawing) {
 
         const proceed = window.confirm(
-            "Your written message will be sent, " +
-            "but drawings aren't included yet. " +
-            "Send your message anyway?"
+            "I haven't figured out how to send " +
+            "drawings yet! Only your written note " +
+            "will be sent. Send anyway?"
         );
 
         if (!proceed) return;
 
     }
+
+
+    /* Sending */
 
     send.disabled = true;
 
@@ -475,23 +509,43 @@ send.onclick = async () => {
         "Sending your little note...";
 
 
-    const formData = new FormData();
-
-
-formData.append(
-    "message",
-    "From: " + (name || "Anonymous") + "\n" +
-    "Email: " + (email || "Not provided") + "\n\n" +
-    "Message:\n" + note
-);
-
-    formData.append(
-        "_subject",
-        "A little note from Between Heartbeats!"
-    );
-
-
     try {
+
+        /* Prepare sender information */
+
+        const formData = new FormData();
+
+        formData.append(
+            "name",
+            name || "Anonymous"
+        );
+
+        if (email) {
+
+            formData.append("email", email);
+
+        }
+
+
+        /* Include details directly in message */
+
+        const fullMessage =
+            "From: " + (name || "Anonymous") + "\n" +
+            "Email: " + (email || "Not provided") + "\n\n" +
+            "Message:\n" + note;
+
+        formData.append(
+            "message",
+            fullMessage
+        );
+
+        formData.append(
+            "_subject",
+            "A little note from Between Heartbeats!"
+        );
+
+
+        /* Deliver to Formspree */
 
         const response = await fetch(
 
@@ -514,6 +568,8 @@ formData.append(
         );
 
 
+        /* Check response */
+
         if (!response.ok) {
 
             const errorData =
@@ -530,16 +586,26 @@ formData.append(
         }
 
 
+        /* Reset after successful submission */
+
         message.innerHTML = "";
+
+        senderName.value = "";
+
+        senderEmail.value = "";
 
         ctx.clearRect(
             0, 0, canvas.width, canvas.height
         );
 
         history = [];
+
         savedRange = null;
 
         selectTool("text");
+
+
+        /* Success notification */
 
         status.textContent =
             "Your little note made it! ♡";
@@ -550,7 +616,7 @@ formData.append(
         console.error(error);
 
         status.textContent =
-            "Oops! Something went wrong. Try again ♡";
+            "Oh no! Give it another try ♡";
 
 
     } finally {

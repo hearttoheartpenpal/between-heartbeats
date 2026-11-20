@@ -328,5 +328,7 @@ selectTool("text");
 
 send.disabled = true;
 
+
 status.textContent =
-    "Draw or write a little note! Email delivery coming soon.";
+    "Leave a little note or doodle! ♡";
+

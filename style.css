@@ -463,12 +463,12 @@ h2 {
 }
 
 .author-top img {
-    width: 55%;
+    width: 63%;
     min-width: 0;
     flex-shrink: 1;
     aspect-ratio: 1;
     object-fit: cover;
-    object-position: 75% 45%;
+    object-position: 65% 55%;
     transform: translateY(18px);
     display: block;
 }

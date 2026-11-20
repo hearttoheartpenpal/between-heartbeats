@@ -762,3 +762,8 @@ h2 {
         font-size: 15px;
     }
 }
+.author-top img {
+    object-fit: cover;
+    object-position: 65% 35%;
+    transform: translateY(18px);
+}

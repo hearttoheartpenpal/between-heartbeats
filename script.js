@@ -343,7 +343,7 @@ send.onclick = async () => {
         return;
     }
 
-    send.disabled = true;
+    send.disabled = false;
     send.textContent = "Sending...";
 
     status.textContent = "Sending your little note...";

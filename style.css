@@ -380,7 +380,7 @@ h2 {
 .author-top {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 70px;
     margin-bottom: 30px;
 }
 
@@ -394,7 +394,7 @@ h2 {
 }
 
 .author-top img {
-    width: 60%;
+    width: 55%;
     min-width: 0;
     flex-shrink: 1;
     aspect-ratio: 1;

@@ -477,7 +477,13 @@ send.onclick = async () => {
 
     const formData = new FormData();
 
-    formData.append("message", note);
+
+formData.append(
+    "message",
+    "From: " + (name || "Anonymous") + "\n" +
+    "Email: " + (email || "Not provided") + "\n\n" +
+    "Message:\n" + note
+);
 
     formData.append(
         "_subject",

@@ -322,13 +322,78 @@ document.getElementById("clear").onclick = () => {
 };
 
 
+\
 /* Starting settings */
 
 selectTool("text");
+message.innerHTML = "";
+send.disabled = false;
 
-send.disabled = true;
+status.textContent = "Leave a little note or doodle! ♡";
 
 
-status.textContent =
-    "Leave a little note or doodle! ♡";
+/* Send message through Formspree */
 
+send.onclick = async () => {
+
+    const note = message.innerText.trim();
+
+    if (!note) {
+        status.textContent = "Write a little message first! ♡";
+        return;
+    }
+
+    send.disabled = true;
+    send.textContent = "Sending...";
+
+    status.textContent = "Sending your little note...";
+
+    const formData = new FormData();
+
+    formData.append("message", note);
+    formData.append("_subject", "A little note from Between Heartbeats!");
+
+    try {
+
+        const response = await fetch(
+            "https://formspree.io/f/mwloqdnb",
+            {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Submission failed");
+        }
+
+        message.innerHTML = "";
+
+        ctx.clearRect(
+            0, 0, canvas.width, canvas.height
+        );
+
+        history = [];
+        savedRange = null;
+
+        selectTool("text");
+
+        status.textContent =
+            "Your little note made it! ♡";
+
+    } catch (error) {
+
+        status.textContent =
+            "Oops! Something went wrong. Try again ♡";
+
+    } finally {
+
+        send.disabled = false;
+        send.textContent = "Send ♡";
+
+    }
+
+};

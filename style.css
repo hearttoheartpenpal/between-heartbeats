@@ -416,3 +416,77 @@ h2 {
         font-size: 14px;
     }
 }
+
+/* Website title */
+
+.site-title {
+    text-align: center;
+    padding: 22px 15px 15px;
+    font-family: 'Patrick Hand', cursive;
+    color: #b64f5a;
+}
+
+.site-title h1 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: normal;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.heartbeat {
+    width: 230px;
+    height: 27px;
+    display: block;
+    margin: 3px auto;
+}
+
+.site-title p {
+    font-size: 17px;
+    margin: 0;
+    color: #915c61;
+}
+
+.nav {
+    margin-top: 0;
+}
+
+/* Author sticky note */
+
+.author {
+    text-align: center;
+    padding: 65px 28px 35px;
+}
+
+.author h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 14px;
+}
+
+.author img {
+    display: block;
+    width: 46%;
+    margin: 0 auto 12px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.author p {
+    font-size: 13px;
+    margin: 8px 0;
+}
+
+/* Message window */
+
+#message {
+    pointer-events: auto;
+}
+
+.paint-menu button:hover {
+    color: #a54b60;
+}
+
+#send:not(:disabled):hover {
+    background: #dca4ad;
+}

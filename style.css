@@ -481,3 +481,229 @@ h2 {
         grid-column: 1;
     }
 }
+
+/* Restore homepage proportions */
+
+.homepage {
+    width: 88%;
+    max-width: 1600px;
+    margin: 45px auto 0;
+    padding: 55px 4% 50px;
+    border: 30px solid #fffefd;
+    border-bottom: none;
+    border-radius: 150px 150px 0 0;
+    background: #ffd0d8;
+}
+
+.home-grid {
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.5fr)
+        minmax(0, 1.05fr);
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.home-grid > section {
+    min-width: 0;
+}
+
+
+/* Website title */
+
+.site-title {
+    padding: 25px 15px 20px;
+}
+
+.site-title h1 {
+    font-size: 65px;
+    line-height: 1.1;
+}
+
+.site-title p {
+    font-size: 21px;
+}
+
+.heartbeat {
+    width: 290px;
+    height: 30px;
+}
+
+
+/* Navigation bar */
+
+.nav a {
+    font-size: 19px;
+}
+
+
+/* Retro Paint window */
+
+.paint-window {
+    width: 100%;
+    min-width: 0;
+    min-height: 360px;
+}
+
+.paint-body {
+    min-width: 0;
+}
+
+.paint-paper {
+    width: 0;
+    min-width: 0;
+    flex: 1;
+}
+
+#drawing {
+    max-width: 100%;
+}
+
+#message {
+    display: block;
+    padding: 12px;
+}
+
+.paint-colors {
+    min-width: 0;
+}
+
+
+/* Interactive heart */
+
+.heart-card {
+    width: 100%;
+    min-height: 360px;
+    padding: 28px 20px;
+}
+
+.heart-content {
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+}
+
+
+/* Restore author sticky note */
+
+.author {
+    background-image:
+        url("assets/yellow%20sticknote.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    width: 100%;
+    min-height: 360px;
+    padding: 65px 25px 30px;
+    text-align: left;
+}
+
+.author-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-top h2 {
+    flex: 1;
+    font-size: 23px;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.author-top img {
+    width: 48%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.author p {
+    font-size: 14px;
+}
+
+
+/* Restore recent interests sticky notes */
+
+.recent {
+    padding: 22px 16px;
+    border-radius: 30px;
+}
+
+.article-grid {
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+    gap: 12px;
+}
+
+.article-note {
+    background-image:
+        url("assets/yellow%20sticknote.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 25px 10px 12px;
+    font-size: 13px;
+    text-align: center;
+}
+
+
+/* About this website */
+
+.about-website {
+    grid-column: 2 / 4;
+    min-height: 280px;
+    padding: 28px;
+}
+
+
+/* Responsive sizing */
+
+@media (max-width: 1050px) {
+
+    .homepage {
+        width: 95%;
+        padding: 35px 4%;
+        border-width: 18px;
+        border-radius: 80px 80px 0 0;
+    }
+
+    .home-grid {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+    }
+
+    .about-website {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .home-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .site-title h1 {
+        font-size: 42px;
+    }
+
+    .site-title p {
+        font-size: 16px;
+    }
+
+    .homepage {
+        padding: 30px 15px;
+        border-width: 12px;
+        border-radius: 50px 50px 0 0;
+    }
+
+    .about-website {
+        grid-column: 1;
+    }
+}

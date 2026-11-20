@@ -2,8 +2,10 @@
 const canvas = document.getElementById("drawing");
 const ctx = canvas.getContext("2d");
 const message = document.getElementById("message");
+const send = document.getElementById("send");
+const status = document.getElementById("status");
 
-let tool = "pencil";
+let tool = "text";
 let color = "#333333";
 let drawing = false;
 let history = [];
@@ -16,15 +18,37 @@ const colors = [
     "#c5dfa0", "#afdbe5", "#c8bfea", "#ecc2df"
 ];
 
+function selectTool(name) {
+    tool = name;
+    message.style.pointerEvents =
+        name === "text" ? "auto" : "none";
+
+    document.querySelectorAll("[data-tool]")
+        .forEach(button => {
+            button.classList.toggle(
+                "selected",
+                button.dataset.tool === name
+            );
+        });
+
+    if (name !== "text") {
+        message.blur();
+    }
+}
+
 colors.forEach(c => {
     const button = document.createElement("button");
-    button.style.background = c;
+
+    button.style.backgroundColor = c;
     button.title = c;
     button.setAttribute("aria-label", "Color " + c);
 
     button.onclick = () => {
         color = c;
-        message.style.color = c;
+
+        if (tool === "text") {
+            message.style.color = c;
+        }
 
         document.querySelectorAll("#colors button")
             .forEach(b => b.classList.remove("selected"));
@@ -37,27 +61,18 @@ colors.forEach(c => {
 
 document.querySelectorAll("[data-tool]").forEach(button => {
     button.onclick = () => {
-        tool = button.dataset.tool;
-
-        document.querySelectorAll("[data-tool]")
-            .forEach(b => b.classList.remove("selected"));
-
-        button.classList.add("selected");
+        selectTool(button.dataset.tool);
 
         if (tool === "text") {
-            message.style.pointerEvents = "auto";
             message.focus();
-        } else {
-            message.style.pointerEvents = "none";
-            message.blur();
         }
     };
 });
 
 function saveDrawing() {
-    history.push(ctx.getImageData(
-        0, 0, canvas.width, canvas.height
-    ));
+    history.push(
+        ctx.getImageData(0, 0, canvas.width, canvas.height)
+    );
 
     if (history.length > 20) {
         history.shift();
@@ -70,6 +85,7 @@ function position(event) {
     return {
         x: (event.clientX - rect.left)
             * canvas.width / rect.width,
+
         y: (event.clientY - rect.top)
             * canvas.height / rect.height
     };
@@ -82,14 +98,14 @@ canvas.addEventListener("pointerdown", event => {
 
     const p = position(event);
 
-    if (["heart", "star", "circle", "square"].includes(tool)) {
-        const shapes = {
-            heart: "♡",
-            star: "☆",
-            circle: "○",
-            square: "□"
-        };
+    const shapes = {
+        heart: "♡",
+        star: "☆",
+        circle: "○",
+        square: "□"
+    };
 
+    if (shapes[tool]) {
         ctx.globalCompositeOperation = "source-over";
         ctx.fillStyle = color;
         ctx.font = "65px sans-serif";
@@ -101,7 +117,9 @@ canvas.addEventListener("pointerdown", event => {
     drawing = true;
 
     ctx.globalCompositeOperation =
-        tool === "eraser" ? "destination-out" : "source-over";
+        tool === "eraser"
+        ? "destination-out"
+        : "source-over";
 
     ctx.strokeStyle = color;
     ctx.lineWidth = tool === "eraser" ? 28 : 5;
@@ -110,7 +128,7 @@ canvas.addEventListener("pointerdown", event => {
 
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
-    ctx.lineTo(p.x + .1, p.y);
+    ctx.lineTo(p.x + 0.1, p.y);
     ctx.stroke();
 });
 
@@ -143,8 +161,8 @@ document.getElementById("clear").onclick = () => {
     message.value = "";
 };
 
-document.querySelector('[data-tool="pencil"]')
-    .classList.add("selected");
+selectTool("text");
 
-document.getElementById("status").textContent =
-    "Draw or write a little note! Email delivery coming soon.";
+status.textContent = "Draw or write a little note! ♡";
+
+send.disabled = true;

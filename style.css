@@ -490,3 +490,18 @@ h2 {
 #send:not(:disabled):hover {
     background: #dca4ad;
 }
+
+#message {
+    outline: none;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    cursor: text;
+    font-family: 'Patrick Hand', cursive;
+}
+
+#message:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+    pointer-events: none;
+}

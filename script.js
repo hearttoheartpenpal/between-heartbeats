@@ -6,6 +6,9 @@ const message = document.getElementById("message");
 const send = document.getElementById("send");
 const status = document.getElementById("status");
 
+const formEndpoint =
+    "https://formspree.io/f/mwloqdnb";
+
 let tool = "text";
 let color = "#333333";
 let drawing = false;
@@ -13,8 +16,10 @@ let history = [];
 let savedRange = null;
 
 
+/* Remember text cursor */
 
 document.addEventListener("selectionchange", () => {
+
     const selection = window.getSelection();
 
     if (
@@ -22,32 +27,46 @@ document.addEventListener("selectionchange", () => {
         message.contains(selection.anchorNode) &&
         message.contains(selection.focusNode)
     ) {
-        savedRange = selection.getRangeAt(0).cloneRange();
+        savedRange =
+            selection.getRangeAt(0).cloneRange();
     }
+
 });
 
+
 function restoreCursor() {
+
     message.focus();
 
     const selection = window.getSelection();
+
     selection.removeAllRanges();
 
     if (
         savedRange &&
         message.contains(savedRange.commonAncestorContainer)
     ) {
+
         selection.addRange(savedRange);
+
     } else {
+
         const range = document.createRange();
+
         range.selectNodeContents(message);
         range.collapse(false);
+
         selection.addRange(range);
+
     }
+
 }
 
 
+/* Select Paint tool */
 
 function selectTool(name) {
+
     tool = name;
 
     message.contentEditable =
@@ -61,16 +80,20 @@ function selectTool(name) {
 
     document.querySelectorAll("[data-tool]")
         .forEach(button => {
+
             button.classList.toggle(
                 "selected",
                 button.dataset.tool === name
             );
+
         });
 
     if (name !== "text") {
         message.blur();
     }
+
 }
+
 
 document.querySelectorAll("[data-tool]")
     .forEach(button => {
@@ -80,20 +103,25 @@ document.querySelectorAll("[data-tool]")
         });
 
         button.onclick = () => {
+
             selectTool(button.dataset.tool);
 
             if (tool === "text") {
+
                 restoreCursor();
 
                 document.execCommand(
                     "foreColor", false, color
                 );
+
             }
+
         };
+
     });
 
 
-/* Color palette */
+/* Original 20-color palette */
 
 const colors = [
     "#333333",
@@ -118,6 +146,7 @@ const colors = [
     "#ecc2df"
 ];
 
+
 colors.forEach((c, index) => {
 
     const button = document.createElement("button");
@@ -125,6 +154,7 @@ colors.forEach((c, index) => {
     button.type = "button";
     button.style.backgroundColor = c;
     button.title = c;
+
     button.setAttribute("aria-label", "Color " + c);
 
     if (index === 0) {
@@ -140,7 +170,11 @@ colors.forEach((c, index) => {
         color = c;
 
         document.querySelectorAll("#colors button")
-            .forEach(b => b.classList.remove("selected"));
+            .forEach(b => {
+
+                b.classList.remove("selected");
+
+            });
 
         button.classList.add("selected");
 
@@ -149,33 +183,55 @@ colors.forEach((c, index) => {
             restoreCursor();
 
             document.execCommand(
-                "foreColor",
-                false,
-                color
+                "foreColor", false, color
             );
 
             const selection = window.getSelection();
 
             if (selection.rangeCount) {
+
                 savedRange =
                     selection.getRangeAt(0).cloneRange();
+
             }
+
         }
+
     };
 
     document.getElementById("colors")
         .appendChild(button);
+
 });
 
 
 /* Paste plain text only */
 
 message.addEventListener("paste", event => {
+
     event.preventDefault();
 
-    const text = event.clipboardData.getData("text/plain");
+    const text =
+        event.clipboardData.getData("text/plain");
 
-    document.execCommand("insertText", false, text);
+    document.execCommand(
+        "insertText", false, text
+    );
+
+});
+
+
+/* Restore placeholder when empty */
+
+message.addEventListener("input", () => {
+
+    if (!message.innerText.trim()) {
+
+        message.innerHTML = "";
+        savedRange = null;
+
+    }
+
 });
 
 
@@ -192,6 +248,7 @@ function saveDrawing() {
     if (history.length > 20) {
         history.shift();
     }
+
 }
 
 
@@ -202,39 +259,48 @@ function position(event) {
     const rect = canvas.getBoundingClientRect();
 
     return {
+
         x: (event.clientX - rect.left)
             * canvas.width / rect.width,
 
         y: (event.clientY - rect.top)
             * canvas.height / rect.height
+
     };
+
 }
 
 
-/* Pencil, eraser and shapes */
+/* Shape tools */
+
+const shapes = {
+
+    heart: "♡",
+    star: "☆",
+    circle: "○",
+    square: "□",
+    rectangle: "▭",
+    arrow: "➝"
+
+};
+
+
+/* Pencil, eraser and shape stamps */
 
 canvas.addEventListener("pointerdown", event => {
 
     if (tool === "text") return;
 
     event.preventDefault();
+
     saveDrawing();
 
     const p = position(event);
 
-    
-const shapes = {
-    heart: "♡",
-    star: "☆",
-    circle: "○",
-    rectangle: "▭",
-    arrow: "➝"
-};
-
-
     if (shapes[tool]) {
 
         ctx.globalCompositeOperation = "source-over";
+
         ctx.fillStyle = color;
         ctx.font = "65px sans-serif";
         ctx.textAlign = "center";
@@ -243,6 +309,7 @@ const shapes = {
         ctx.fillText(shapes[tool], p.x, p.y);
 
         return;
+
     }
 
     canvas.setPointerCapture(event.pointerId);
@@ -255,16 +322,21 @@ const shapes = {
             : "source-over";
 
     ctx.strokeStyle = color;
-    ctx.lineWidth = tool === "eraser" ? 28 : 5;
+
+    ctx.lineWidth =
+        tool === "eraser" ? 28 : 5;
+
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
     ctx.beginPath();
+
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + 0.1, p.y);
     ctx.stroke();
 
 });
+
 
 canvas.addEventListener("pointermove", event => {
 
@@ -277,14 +349,22 @@ canvas.addEventListener("pointermove", event => {
 
 });
 
+
 function stopDrawing() {
+
     drawing = false;
     ctx.beginPath();
+
 }
 
+
 canvas.addEventListener("pointerup", stopDrawing);
+
 canvas.addEventListener("pointercancel", stopDrawing);
-canvas.addEventListener("lostpointercapture", stopDrawing);
+
+canvas.addEventListener(
+    "lostpointercapture", stopDrawing
+);
 
 
 /* Undo */
@@ -294,17 +374,21 @@ document.getElementById("undo").onclick = () => {
     if (tool === "text") {
 
         restoreCursor();
+
         document.execCommand("undo");
 
     } else if (history.length) {
 
-        ctx.putImageData(history.pop(), 0, 0);
+        ctx.putImageData(
+            history.pop(), 0, 0
+        );
 
     }
+
 };
 
 
-/* Clear */
+/* Clear Paint window */
 
 document.getElementById("clear").onclick = () => {
 
@@ -319,56 +403,126 @@ document.getElementById("clear").onclick = () => {
 
     selectTool("text");
 
+    status.textContent =
+        "Leave a little note or doodle! ♡";
+
 };
 
 
-\
 /* Starting settings */
 
 selectTool("text");
+
 message.innerHTML = "";
+
 send.disabled = false;
 
-status.textContent = "Leave a little note or doodle! ♡";
+status.textContent =
+    "Leave a little note or doodle! ♡";
 
 
 /* Send message through Formspree */
 
 send.onclick = async () => {
 
+    if (send.disabled) return;
+
     const note = message.innerText.trim();
 
     if (!note) {
-        status.textContent = "Write a little message first! ♡";
+
+        status.textContent =
+            "Write a little message first! ♡";
+
         return;
+
     }
 
-    send.disabled = false;
+    const pixels = ctx.getImageData(
+        0, 0, canvas.width, canvas.height
+    ).data;
+
+    let hasDrawing = false;
+
+    for (let i = 3; i < pixels.length; i += 4) {
+
+        if (pixels[i] !== 0) {
+
+            hasDrawing = true;
+            break;
+
+        }
+
+    }
+
+    if (hasDrawing) {
+
+        const proceed = window.confirm(
+            "Your written message will be sent, " +
+            "but drawings aren't included yet. " +
+            "Send your message anyway?"
+        );
+
+        if (!proceed) return;
+
+    }
+
+    send.disabled = true;
+
     send.textContent = "Sending...";
 
-    status.textContent = "Sending your little note...";
+    status.textContent =
+        "Sending your little note...";
+
 
     const formData = new FormData();
 
     formData.append("message", note);
-    formData.append("_subject", "A little note from Between Heartbeats!");
+
+    formData.append(
+        "_subject",
+        "A little note from Between Heartbeats!"
+    );
+
 
     try {
 
         const response = await fetch(
-            "https://formspree.io/f/mwloqdnb",
+
+            formEndpoint,
+
             {
+
                 method: "POST",
+
                 body: formData,
+
                 headers: {
+
                     "Accept": "application/json"
+
                 }
+
             }
+
         );
 
+
         if (!response.ok) {
+
+            const errorData =
+                await response.json().catch(() => ({}));
+
+            console.error(
+                "Formspree error:",
+                response.status,
+                errorData
+            );
+
             throw new Error("Submission failed");
+
         }
+
 
         message.innerHTML = "";
 
@@ -384,14 +538,19 @@ send.onclick = async () => {
         status.textContent =
             "Your little note made it! ♡";
 
+
     } catch (error) {
+
+        console.error(error);
 
         status.textContent =
             "Oops! Something went wrong. Try again ♡";
 
+
     } finally {
 
         send.disabled = false;
+
         send.textContent = "Send ♡";
 
     }
